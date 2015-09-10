@@ -7,7 +7,7 @@ Bei den anderen ist nicht garantiert, dass sie ohne Fehler laufen.
 
 Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber daran.
 
-Änderungen:
+Änderungen:\n
 -V3:
 	-Löschen von Reset bei 0 Leben, da Fehler.
 	-Abstand von Kugel und Rand erhöht.
