@@ -2,6 +2,7 @@
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
@@ -43,6 +44,9 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 
 	public JRadioButtonMenuItem menuItemScreenshot;
 	public static JRadioButtonMenuItem menuItemLogger;
+	public JRadioButtonMenuItem menuItemClose;
+
+	public JMenuItem refresh_graphics;
 
 	public List<Actor> Kugeln = new ArrayList<Actor>();
 	// Liste, in der alle Kugeln gespeicher sind
@@ -134,12 +138,15 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		// MenuItems fürs Aktiviern von Daten
 		menuItemScreenshot = new JRadioButtonMenuItem("Screenshots");
 		menuItemLogger = new JRadioButtonMenuItem("Logger");
+		menuItemClose = new JRadioButtonMenuItem("Beenden bei verlieren");
 		menuItemScreenshot.setSelected(false);
 		menuItemLogger.setSelected(false);
+		menuItemClose.setSelected(false);
 		menu.add(menuItemScreenshot);
 		menu.add(menuItemLogger);
+		menu.add(menuItemClose);
 
-		JMenuItem refresh_graphics = new JMenuItem("Grafik-Fehler");
+		refresh_graphics = new JMenuItem("Grafik-Fehler");
 		JMenuItem kugel_fehler = new JMenuItem("Kugel in Wand");
 		refresh_graphics.addActionListener(new ActionListener() {
 			@Override
@@ -147,6 +154,7 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 				refresh();
 				getBg().clear();
 				addKugeln();
+				getBg().clear();
 				saveToLog("Grafik-Fehler.");
 			}
 		});
@@ -178,6 +186,8 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		menu2.add(kugel_fehler);
 
 		getFrame().setJMenuBar(menuBar);
+		menuBar.setCursor(Cursor.getDefaultCursor());
+		setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
 
 		addExitListener(new GGExitListener() {
 			@Override
@@ -226,7 +236,7 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 	}
 
 	private void addKugeln() {
-		getBg().clear();
+		getBg().clear(WHITE);
 		removeActors(Kugel.class);
 		Kugeln = new ArrayList<Actor>();
 		for (int i = 0; i < Level; i++) {
@@ -242,7 +252,7 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			temp_Kugel.setBox(getHeight() - 10, 0, 0, getWidth()); // Setze
 																	// Bewegungs-Box
 		}
-		getBg().clear();
+		getBg().clear(WHITE);
 		refresh();
 	}
 
@@ -368,6 +378,7 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 					+ punkte_total + "\nWeiter gehts!");
 			ausrichtung = 0;
 			refresh();
+			setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
 		} else {
 			// Nicht gewonnen
 		}
@@ -402,8 +413,10 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			ausrichtung %= 2;
 			if (ausrichtung == 1) {
 				saveToLog("Rechte Maustaste. Aurichtung: Oben-Unten");
+				setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
 			} else {
 				saveToLog("Rechte Maustaste. Aurichtung: Links-Rechts");
+				setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
 			}
 			break;
 		// Ausrichtung ändern
@@ -430,7 +443,21 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			saveToLog("Spiel verloren. Punkte: " + punkte_total);
 			// Keine Leben mehr
 			JOptionPane.showMessageDialog(null, "Du hast verloren.\nDeine Punkte: " + punkte_total);
-			System.exit(1);
+			if (menuItemClose.isSelected()) {
+				System.exit(1);
+			} else {
+				removeActors(Mauer.class);
+				addKugeln();
+				Level = 1;
+				Leben = Level - 1;
+				punkte_total = 0;
+				prozent = 0;
+				saveToLog("Neues Spiel gestartet.");
+				startTime = System.nanoTime();
+				refresh_graphics.doClick();
+				StatusUpdate();
+
+			}
 		} else {
 			saveToLog("Leben verloren. Rest-Leben: " + (getLives() - 1));
 
