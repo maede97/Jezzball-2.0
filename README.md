@@ -11,9 +11,11 @@ Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber dar
 
 -V3:
 	-Löschen von Reset bei 0 Leben, da Fehler.
+	
 	-Abstand von Kugel und Rand erhöht.
 
 -V2:
 	-Erster Versuch von Reset wenn keine Leben mehr, nicht beenden.
+	
 -V1:
 	-Erste Version
