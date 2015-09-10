@@ -144,7 +144,7 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		menuItemClose.setSelected(false);
 		menu.add(menuItemScreenshot);
 		menu.add(menuItemLogger);
-		menu.add(menuItemClose);
+		// menu.add(menuItemClose);
 
 		refresh_graphics = new JMenuItem("Grafik-Fehler");
 		JMenuItem kugel_fehler = new JMenuItem("Kugel in Wand");
@@ -443,21 +443,17 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			saveToLog("Spiel verloren. Punkte: " + punkte_total);
 			// Keine Leben mehr
 			JOptionPane.showMessageDialog(null, "Du hast verloren.\nDeine Punkte: " + punkte_total);
-			if (menuItemClose.isSelected()) {
-				System.exit(1);
-			} else {
-				removeActors(Mauer.class);
-				addKugeln();
-				Level = 1;
-				Leben = Level - 1;
-				punkte_total = 0;
-				prozent = 0;
-				saveToLog("Neues Spiel gestartet.");
-				startTime = System.nanoTime();
-				refresh_graphics.doClick();
-				StatusUpdate();
-
-			}
+			System.exit(0);
+			/*
+			 * if (menuItemClose.isSelected()) { System.exit(1); } else {
+			 * 
+			 * removeActors(Mauer.class); addKugeln(); Level = 1; Leben = Level
+			 * - 1; punkte_total = 0; prozent = 0;
+			 * saveToLog("Neues Spiel gestartet."); startTime =
+			 * System.nanoTime(); refresh_graphics.doClick(); StatusUpdate();
+			 * 
+			 * }
+			 */
 		} else {
 			saveToLog("Leben verloren. Rest-Leben: " + (getLives() - 1));
 
