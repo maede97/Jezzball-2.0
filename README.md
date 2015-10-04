@@ -14,12 +14,16 @@ Download der neusten Version:
 
 
 ##Änderungen:
-### V3:
+### V1.4 (noch nicht veröffentlicht):
+- Hinzufügen von "Kein Reset bei 0 Leben"
+- Grafik-Fehlerbehebung verbessert
+
+### V1.3:
 - Löschen von Reset bei 0 Leben, da Fehler.
 - Abstand von Kugel und Rand erhöht.
 
-### V2:
+### V1.2:
 - Erster Versuch von Reset wenn keine Leben mehr, nicht beenden.
 	
-### V1:
+### V1.1:
 - Erste Version
