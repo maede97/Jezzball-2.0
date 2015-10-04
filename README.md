@@ -6,7 +6,7 @@ Bitte immer die aktuellste Version spielen!
 Bei den anderen ist nicht garantiert, dass sie ohne Fehler laufen.
 
 Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber daran.
-
+\n
 
 Download der neusten Version:
 [Version 1.3](Jezzball_V1.3.jar?raw=true)
