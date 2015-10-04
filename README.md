@@ -7,6 +7,8 @@ Bei den anderen ist nicht garantiert, dass sie ohne Fehler laufen.
 
 Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber daran.
 
+Download der neusten Version: [hier!](Jezzball_V1.3.jar)
+
 ##Änderungen:
 ### V3:
 - Löschen von Reset bei 0 Leben, da Fehler.
