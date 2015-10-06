@@ -9,7 +9,7 @@ Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber dar
   
   
 Download der neusten Version:  
-[Version 1.4](Jezzball_V1.4.jar?raw=true)  
+[Version 1.4.2](Jezzball_V1.4.2.jar?raw=true)  
 
 
 
@@ -17,6 +17,10 @@ Download der neusten Version:
 ### V1.5 (noch nicht veröffentlicht):
 - Hinzufügen von "Kein Reset bei 0 Leben"
 - Grafik-Fehlerbehebung verbessert
+
+### V1.4.2:
+- Geschwindigkeiten angepasst
+- Bug-Fix: falls verloren --> Beenden
 
 ### V1.4:
 - Geschwindigkeit der Kugel in Einstellungen
