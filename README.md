@@ -12,7 +12,6 @@ Download der neusten Version:
 [Version 1.4](Jezzball_V1.4.jar?raw=true)  
 
 
-
 ##Änderungen:
 ### V1.5 (noch nicht veröffentlicht):
 - Hinzufügen von "Kein Reset bei 0 Leben"
@@ -20,7 +19,7 @@ Download der neusten Version:
 
 ### V1.4:
 - Geschwindigkeit der Kugel in Einstellungen
-- 
+
 ### V1.3:
 - Löschen von Reset bei 0 Leben, da Fehler.
 - Abstand von Kugel und Rand erhöht.
