@@ -16,10 +16,10 @@ Download der neusten Version:
 ##Änderungen:
 ### V1.5 (noch nicht veröffentlicht):
 - Hinzufügen von "Kein Reset bei 0 Leben"
-- Grafik-Fehlerbehebung verbessert
 
 ### V1.4:
 - Geschwindigkeit der Kugel in Einstellungen
+- Grafik-Fehlerbehebung verbessert
 
 ### V1.3:
 - Löschen von Reset bei 0 Leben, da Fehler.
