@@ -19,10 +19,10 @@ public class Kugel extends Actor {
 	public int links;// X = 0
 	public int rechts;// Positiv X
 
-	public Kugel(Jezzball mainClass) {
+	public Kugel(Jezzball mainClass, int slowDown) {
 		// Geschwindigkeit der Kugel
 		this.mainClass = mainClass;
-		setSlowDown(0);
+		setSlowDown(slowDown);
 	}
 
 	public void setBox(int unten, int oben, int links, int rechts) {
@@ -96,7 +96,7 @@ public class Kugel extends Actor {
 
 		double Ausrichtung = getDirection();
 
-		// Die Kugel ist am Linken Rand
+		// Die Kugel ist am linken Rand
 		if (Position.getX() <= links + Rand_Grenze) {
 			Ausrichtung = 180 - Ausrichtung;
 		}

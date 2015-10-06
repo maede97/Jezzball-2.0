@@ -42,9 +42,15 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 	private int prozent = 0;
 	public static long startTime;
 
+	public int KugelSlowDown = 5;
+
 	public JRadioButtonMenuItem menuItemScreenshot;
 	public static JRadioButtonMenuItem menuItemLogger;
 	public JRadioButtonMenuItem menuItemClose;
+
+	public JRadioButtonMenuItem menu_fast;
+	public JRadioButtonMenuItem menu_medium;
+	public JRadioButtonMenuItem menu_slow;
 
 	public JMenuItem refresh_graphics;
 
@@ -138,24 +144,94 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		// MenuItems fürs Aktiviern von Daten
 		menuItemScreenshot = new JRadioButtonMenuItem("Screenshots");
 		menuItemLogger = new JRadioButtonMenuItem("Logger");
-		menuItemClose = new JRadioButtonMenuItem("Beenden bei verlieren");
+		menuItemClose = new JRadioButtonMenuItem("Beenden bei Verlieren");
+
+		JMenu geschwindigkeit_menu = new JMenu("Geschwindigkeit");
+		menu_fast = new JRadioButtonMenuItem("Schnell");
+		menu_medium = new JRadioButtonMenuItem("Mitel");
+		menu_slow = new JRadioButtonMenuItem("Langsam");
+		menu_fast.setSelected(false);
+		menu_medium.setSelected(true);
+		menu_slow.setSelected(false);
+		geschwindigkeit_menu.add(menu_fast);
+		geschwindigkeit_menu.add(menu_medium);
+		geschwindigkeit_menu.add(menu_slow);
+
 		menuItemScreenshot.setSelected(false);
 		menuItemLogger.setSelected(false);
 		menuItemClose.setSelected(false);
 		menu.add(menuItemScreenshot);
 		menu.add(menuItemLogger);
-		// menu.add(menuItemClose);
+		menu.add(menuItemClose);
+		menu.add(geschwindigkeit_menu);
+
+		menu_fast.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (menu_fast.isSelected()) {
+					menu_medium.setSelected(false);
+					menu_slow.setSelected(false);
+					changeSpeed();
+				} else {
+					menu_fast.setSelected(true);
+				}
+
+			}
+		});
+
+		menu_medium.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (menu_medium.isSelected()) {
+					menu_fast.setSelected(false);
+					menu_slow.setSelected(false);
+					changeSpeed();
+				} else {
+					menu_medium.setSelected(true);
+				}
+
+			}
+		});
+
+		menu_slow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (menu_slow.isSelected()) {
+					menu_medium.setSelected(false);
+					menu_fast.setSelected(false);
+					changeSpeed();
+				} else {
+					menu_slow.setSelected(true);
+				}
+
+			}
+		});
 
 		refresh_graphics = new JMenuItem("Grafik-Fehler");
 		JMenuItem kugel_fehler = new JMenuItem("Kugel in Wand");
 		refresh_graphics.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				refresh();
+				// refresh();
+				// getBg().clear();
+				// addKugeln();
+				// getBg().clear();
+				saveToLog("Grafik-Fehler.");
+				removeActors(Mauer.class);
 				getBg().clear();
 				addKugeln();
-				getBg().clear();
-				saveToLog("Grafik-Fehler.");
+				// Alle Bewegungs-Boxen der Kugeln wieder in den
+				// Ursprungszustand
+				// versetzen
+				for (Actor kugel_actor : Kugeln) {
+					Kugel kugel_kugel = (Kugel) kugel_actor;
+					kugel_kugel.setBox(getHeight(), 0, 0, getWidth());
+				}
+				getBg().setPaintColor(WHITE);
+				getBg().fillRectangle(new Point(0, 0), new Point(getWidth(), getHeight()));
 			}
 		});
 
@@ -202,6 +278,18 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		doRun();
 	}
 
+	protected void changeSpeed() {
+		if (menu_fast.isSelected())
+			KugelSlowDown = 0;
+		if (menu_medium.isSelected())
+			KugelSlowDown = 5;
+		if (menu_slow.isSelected())
+			KugelSlowDown = 10;
+		for (Actor k : Kugeln) {
+			k.setSlowDown(KugelSlowDown);
+		}
+	}
+
 	public void onExit() {
 		saveToLog("Exit-Knopf. Punkte: " + punkte_total);
 		JOptionPane.showMessageDialog(null, "Du hast das Spiel beendet.\nDeine Punkte: " + punkte_total);
@@ -240,7 +328,7 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		removeActors(Kugel.class);
 		Kugeln = new ArrayList<Actor>();
 		for (int i = 0; i < Level; i++) {
-			Kugel temp_Kugel = new Kugel(this);
+			Kugel temp_Kugel = new Kugel(this, KugelSlowDown);
 			addActor(temp_Kugel, getRandomEmptyLocation());
 			while (temp_Kugel.getXStart() < 5 || temp_Kugel.getXStart() > getWidth() - 5 || temp_Kugel.getYStart() < 5
 					|| temp_Kugel.getYStart() > getHeight() - 5) {
@@ -443,17 +531,22 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			saveToLog("Spiel verloren. Punkte: " + punkte_total);
 			// Keine Leben mehr
 			JOptionPane.showMessageDialog(null, "Du hast verloren.\nDeine Punkte: " + punkte_total);
-			System.exit(0);
-			/*
-			 * if (menuItemClose.isSelected()) { System.exit(1); } else {
-			 * 
-			 * removeActors(Mauer.class); addKugeln(); Level = 1; Leben = Level
-			 * - 1; punkte_total = 0; prozent = 0;
-			 * saveToLog("Neues Spiel gestartet."); startTime =
-			 * System.nanoTime(); refresh_graphics.doClick(); StatusUpdate();
-			 * 
-			 * }
-			 */
+
+			if (menuItemClose.isSelected()) {
+				System.exit(1);
+			} else {
+				removeActors(Mauer.class);
+				addKugeln();
+				Level = 1;
+				Leben = Level - 1;
+				punkte_total = 0;
+				prozent = 0;
+				saveToLog("Neues Spiel gestartet.");
+				startTime = System.nanoTime();
+				getBg().fillRectangle(new Point(0, 0), new Point(getWidth(), getHeight()));
+				StatusUpdate();
+			}
+
 		} else {
 			saveToLog("Leben verloren. Rest-Leben: " + (getLives() - 1));
 
