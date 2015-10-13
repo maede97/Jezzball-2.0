@@ -1,4 +1,4 @@
-# Jezzball-2.0
+# Jezzball 2.0
 
 Dies ist ein Teil meiner Maturarbeit der KZO Wetzikon.
 
