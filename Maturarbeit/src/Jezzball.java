@@ -10,11 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -38,6 +41,8 @@ import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 
 public class Jezzball extends GameGrid implements GGMouseListener, GGKeyListener {
+
+	private static final String version = "1.6";
 
 	private static final long serialVersionUID = 1L;
 	private int Level = 1; // Aktueller Level
@@ -152,43 +157,41 @@ public class Jezzball extends GameGrid implements GGMouseListener, GGKeyListener
 				JFrame temp_frame = new JFrame("Tastaturkürzel");
 				JTable temp_table = new JTable(11, 2);
 				temp_table.setEnabled(false);
-				temp_frame.setSize(300,210);
-				
+				temp_frame.setSize(300, 210);
+
 				temp_table.setValueAt("Escape", 0, 0);
 				temp_table.setValueAt("Beenden", 0, 1);
-				
+
 				temp_table.setValueAt("F1", 1, 0);
 				temp_table.setValueAt("Hilfe anzeigen", 1, 1);
-				
+
 				temp_table.setValueAt("F2", 2, 0);
 				temp_table.setValueAt("Grafik-Fehler", 2, 1);
-				
+
 				temp_table.setValueAt("F3", 3, 0);
 				temp_table.setValueAt("Kugel-in-Wand-Fehler", 3, 1);
-				
+
 				temp_table.setValueAt("1", 4, 0);
 				temp_table.setValueAt("Geschwindigkeit Langsam", 4, 1);
-				
+
 				temp_table.setValueAt("2", 5, 0);
 				temp_table.setValueAt("Geschwindigkeit Mittel", 5, 1);
-				
+
 				temp_table.setValueAt("3", 6, 0);
 				temp_table.setValueAt("Geschwindigkeit Schnell", 6, 1);
-				
+
 				temp_table.setValueAt("C", 7, 0);
 				temp_table.setValueAt("Statusbar anzeigen", 7, 1);
-				
+
 				temp_table.setValueAt("L", 8, 0);
 				temp_table.setValueAt("Logger aktivieren", 8, 1);
-				
+
 				temp_table.setValueAt("S", 9, 0);
 				temp_table.setValueAt("Screenshots aktivieren", 9, 1);
-				
+
 				temp_table.setValueAt("T", 10, 0);
 				temp_table.setValueAt("Tastaturkürzel anzeigen", 10, 1);
-				
-				
-				
+
 				temp_frame.add(temp_table);
 
 				temp_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -357,6 +360,7 @@ public class Jezzball extends GameGrid implements GGMouseListener, GGKeyListener
 				return false;
 			}
 		});
+		checkForUpdates();
 		startTime = System.nanoTime();
 
 		show();
@@ -578,6 +582,41 @@ public class Jezzball extends GameGrid implements GGMouseListener, GGKeyListener
 	public int getLives() {
 		// Gibt aktuelle Anzahl Leben zurück
 		return Leben;
+	}
+
+	public String getFromURL(final String urlString) {
+		BufferedInputStream in = null;
+		String output = "";
+
+		try {
+			in = new BufferedInputStream(new URL(urlString).openStream());
+			byte[] contents = new byte[1024];
+
+			int bytesRead = 0;
+			while ((bytesRead = in.read(contents)) != -1) {
+				output = new String(contents, 0, bytesRead);
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return output;
+	}
+
+	public void checkForUpdates() {
+		saveToLog("Check for Updates");
+		String url = "https://raw.githubusercontent.com/maede97/Jezzball-2.0/master/version.txt";
+		String newVersion = getFromURL(url);
+		if (!newVersion.equalsIgnoreCase(version)) {
+			JOptionPane.showMessageDialog(null, "Eine neue Version von Jezzball ist verfügbar!\n"
+					+ "Aktuelle Version: " + version + "\n" + "Neue Version: " + newVersion + "\n"
+					+ "Du kannst sie unter\n" + "https://github.com/maede97/Jezzball-2.0\n" + "herunterladen." + "\n\n"
+					+ "Viel Spass!");
+			saveToLog("Neue Version verfügbar.");
+		}
 	}
 
 	@Override
