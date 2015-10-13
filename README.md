@@ -12,14 +12,17 @@ Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber dar
   
   
 Download der neusten Version:  
-[Version 1.5](Jezzball_V1.5.jar?raw=true)  
+[Version 1.6](Jezzball_V1.6.jar?raw=true)  
 
 
 
 ##Änderungen:
-### V1.6 (noch nicht veröffentlicht):
+### V1.7 (noch nicht veröffentlicht):
 - Hinzufügen von "Kein Reset bei 0 Leben"
 - Pause-Funktion
+
+### [V1.6](Jezzball_V1.6.jar?raw=true):
+- Automatischer Update-Check eingeführt
 
 ### [V1.5](Jezzball_V1.5.jar?raw=true):
 - Tastaturkürzel hinzugefügt
