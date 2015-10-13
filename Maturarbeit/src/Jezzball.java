@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,20 +21,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTable;
 
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGExitListener;
+import ch.aplu.jgamegrid.GGKeyListener;
 import ch.aplu.jgamegrid.GGMouse;
 import ch.aplu.jgamegrid.GGMouseListener;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 
-public class Jezzball extends GameGrid implements GGMouseListener {
+public class Jezzball extends GameGrid implements GGMouseListener, GGKeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private int Level = 1; // Aktueller Level
@@ -42,17 +46,23 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 	private int prozent = 0;
 	public static long startTime;
 
-	public int KugelSlowDown = 5;
+	public int KugelSlowDown = 2;
 
 	public JRadioButtonMenuItem menuItemScreenshot;
 	public static JRadioButtonMenuItem menuItemLogger;
+	public JRadioButtonMenuItem menuItemStatus;
 	public JRadioButtonMenuItem menuItemClose;
 
 	public JRadioButtonMenuItem menu_fast;
 	public JRadioButtonMenuItem menu_medium;
 	public JRadioButtonMenuItem menu_slow;
 
+	public JMenuItem info;
+	public JMenuItem tastatur;
+	public JMenuItem exit;
+
 	public JMenuItem refresh_graphics;
+	public JMenuItem kugel_fehler;
 
 	public List<Actor> Kugeln = new ArrayList<Actor>();
 	// Liste, in der alle Kugeln gespeicher sind
@@ -73,6 +83,7 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		// Füge Kugeln hinzu
 		addMouseListener(this, GGMouse.lPress | GGMouse.rPress);
 		// Setze Maus-Listener
+		addKeyListener(this);
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu datei = new JMenu("Datei");
@@ -82,8 +93,9 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		menuBar.add(menu);
 		menuBar.add(menu2);
 
-		JMenuItem info = new JMenuItem("Info");
-		JMenuItem exit = new JMenuItem("Beenden");
+		info = new JMenuItem("Info");
+		tastatur = new JMenuItem("Tastaturkürzel");
+		exit = new JMenuItem("Beenden");
 
 		info.addActionListener(new ActionListener() {
 			@Override
@@ -132,6 +144,60 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 						+ "Vielen Dank fürs Spielen und viel Spass!");
 			}
 		});
+
+		tastatur.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame temp_frame = new JFrame("Tastaturkürzel");
+				JTable temp_table = new JTable(11, 2);
+				temp_table.setEnabled(false);
+				temp_frame.setSize(300,210);
+				
+				temp_table.setValueAt("Escape", 0, 0);
+				temp_table.setValueAt("Beenden", 0, 1);
+				
+				temp_table.setValueAt("F1", 1, 0);
+				temp_table.setValueAt("Hilfe anzeigen", 1, 1);
+				
+				temp_table.setValueAt("F2", 2, 0);
+				temp_table.setValueAt("Grafik-Fehler", 2, 1);
+				
+				temp_table.setValueAt("F3", 3, 0);
+				temp_table.setValueAt("Kugel-in-Wand-Fehler", 3, 1);
+				
+				temp_table.setValueAt("1", 4, 0);
+				temp_table.setValueAt("Geschwindigkeit Langsam", 4, 1);
+				
+				temp_table.setValueAt("2", 5, 0);
+				temp_table.setValueAt("Geschwindigkeit Mittel", 5, 1);
+				
+				temp_table.setValueAt("3", 6, 0);
+				temp_table.setValueAt("Geschwindigkeit Schnell", 6, 1);
+				
+				temp_table.setValueAt("C", 7, 0);
+				temp_table.setValueAt("Statusbar anzeigen", 7, 1);
+				
+				temp_table.setValueAt("L", 8, 0);
+				temp_table.setValueAt("Logger aktivieren", 8, 1);
+				
+				temp_table.setValueAt("S", 9, 0);
+				temp_table.setValueAt("Screenshots aktivieren", 9, 1);
+				
+				temp_table.setValueAt("T", 10, 0);
+				temp_table.setValueAt("Tastaturkürzel anzeigen", 10, 1);
+				
+				
+				
+				temp_frame.add(temp_table);
+
+				temp_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				temp_frame.setResizable(false);
+				temp_frame.setVisible(true);
+
+			}
+		});
+
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -139,11 +205,13 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			}
 		});
 		datei.add(info);
+		datei.add(tastatur);
 		datei.add(exit);
 
 		// MenuItems fürs Aktiviern von Daten
 		menuItemScreenshot = new JRadioButtonMenuItem("Screenshots");
 		menuItemLogger = new JRadioButtonMenuItem("Logger");
+		menuItemStatus = new JRadioButtonMenuItem("Zeige Statusleiste");
 		menuItemClose = new JRadioButtonMenuItem("Beenden bei Verlieren");
 
 		JMenu geschwindigkeit_menu = new JMenu("Geschwindigkeit");
@@ -159,10 +227,14 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 
 		menuItemScreenshot.setSelected(false);
 		menuItemLogger.setSelected(false);
-		menuItemClose.setSelected(false);
+		menuItemStatus.setSelected(true);
+		menuItemClose.setSelected(true);
 		menu.add(menuItemScreenshot);
 		menu.add(menuItemLogger);
-		menu.add(menuItemClose);
+		menu.add(menuItemStatus);
+
+		// menu.add(menuItemClose);
+
 		menu.add(geschwindigkeit_menu);
 
 		menu_fast.addActionListener(new ActionListener() {
@@ -210,8 +282,21 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			}
 		});
 
+		menuItemStatus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (menuItemStatus.isSelected()) {
+					showStatusBar(true);
+				} else {
+					showStatusBar(false);
+				}
+			}
+		});
+
 		refresh_graphics = new JMenuItem("Grafik-Fehler");
-		JMenuItem kugel_fehler = new JMenuItem("Kugel in Wand");
+		kugel_fehler = new JMenuItem("Kugel in Wand");
 		refresh_graphics.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -282,9 +367,9 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 		if (menu_fast.isSelected())
 			KugelSlowDown = 0;
 		if (menu_medium.isSelected())
-			KugelSlowDown = 5;
+			KugelSlowDown = 2;
 		if (menu_slow.isSelected())
-			KugelSlowDown = 10;
+			KugelSlowDown = 5;
 		for (Actor k : Kugeln) {
 			k.setSlowDown(KugelSlowDown);
 		}
@@ -391,7 +476,10 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			String name = "Sekunden_" + time + "_Level_" + level;
 			try {
 				Rectangle rect = getFrame().getBounds();
-				rect.setSize((int) rect.getWidth(), (int) rect.getHeight() + 120);
+				if (menuItemStatus.isSelected())
+					rect.setSize((int) rect.getWidth(), (int) rect.getHeight() + 120);
+				else
+					rect.setSize((int) rect.getWidth(), (int) rect.getHeight());
 				Robot rob = new Robot();
 				BufferedImage buf = rob.createScreenCapture(rect);
 				File folder = new File("Jezzball_Data" + File.separator + startTime);
@@ -561,5 +649,53 @@ public class Jezzball extends GameGrid implements GGMouseListener {
 			setLives(getLives() - 1);
 
 		}
+	}
+
+	@Override
+	public boolean keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_F1:
+			info.doClick();
+			break;
+		case KeyEvent.VK_ESCAPE:
+			exit.doClick();
+			break;
+		case KeyEvent.VK_1:
+			menu_slow.doClick();
+			break;
+		case KeyEvent.VK_2:
+			menu_medium.doClick();
+			break;
+		case KeyEvent.VK_3:
+			menu_fast.doClick();
+			break;
+		case KeyEvent.VK_S:
+			menuItemScreenshot.doClick();
+			break;
+		case KeyEvent.VK_L:
+			menuItemLogger.doClick();
+			break;
+		case KeyEvent.VK_C:
+			menuItemStatus.doClick();
+			break;
+		case KeyEvent.VK_T:
+			tastatur.doClick();
+			break;
+		case KeyEvent.VK_F2:
+			refresh_graphics.doClick();
+			break;
+		case KeyEvent.VK_F3:
+			kugel_fehler.doClick();
+		default:
+			break;
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
