@@ -17,20 +17,20 @@ Download der neusten Version:
 ### V1.5 (noch nicht veröffentlicht):
 - Hinzufügen von "Kein Reset bei 0 Leben"
 
-### V1.4.2:
+### [V1.4.2](Jezzball_V1.4.2.jar?raw=true):
 - Geschwindigkeiten angepasst
 - Bug-Fix: falls verloren --> Beenden
 
-### V1.4:
+### [V1.4](Jezzball_V1.4.jar?raw=true):
 - Geschwindigkeit der Kugel in Einstellungen
 - Grafik-Fehlerbehebung verbessert
 
-### V1.3:
+### [V1.3](Jezzball_V1.3.jar?raw=true):
 - Löschen von Reset bei 0 Leben, da Fehler.
 - Abstand von Kugel und Rand erhöht.
 
-### V1.2:
+### [V1.2](Jezzball_V1.2.jar?raw=true):
 - Erster Versuch von Reset wenn keine Leben mehr, nicht beenden.
 	
-### V1.1:
+### [V1.1](Jezzball_V1.1.jar?raw=true):
 - Erste Version
