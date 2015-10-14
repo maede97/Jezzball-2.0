@@ -8,9 +8,11 @@ Bitte mindestens Java 8 Update 45 verwenden! (kann [hier](http://www.java.com/de
 
 Bei den anderen ist nicht garantiert, dass sie ohne Fehler laufen.
 
-Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber daran.  
-  
-  
+Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber daran. 
+
+Seit dem 1.6 Update gibt es einen automatischen Update-Checker! Beim Start des Spiels wird automatisch überprüft, ob eine neue Version verfügbar ist. Diese kann dann auf dieser Seite heruntergeladen werden.
+
+
 Download der neusten Version:  
 [Version 1.6](Jezzball_V1.6.jar?raw=true)  
 
@@ -20,6 +22,7 @@ Download der neusten Version:
 ### V1.7 (noch nicht veröffentlicht):
 - Hinzufügen von "Kein Reset bei 0 Leben"
 - Pause-Funktion
+- Spracheinstellung
 
 ### [V1.6](Jezzball_V1.6.jar?raw=true):
 - Automatischer Update-Check eingeführt
