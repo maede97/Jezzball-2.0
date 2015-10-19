@@ -14,7 +14,7 @@ Seit dem 1.6 Update gibt es einen automatischen Update-Checker! Beim Start des S
 
 
 Download der neusten Version:  
-[Version 1.6](Jezzball_V1.6.jar?raw=true)  
+[Version 1.6.2](Jezzball_V1.6.2.jar?raw=true)  
 
 
 
@@ -24,6 +24,9 @@ Download der neusten Version:
 - Pause-Funktion
 - Spracheinstellung
 - Bug von 1.6 beheben
+
+### [V1.6.2](Jezzball_V1.6.2.jar?raw=true):
+- Bux fix: Tastaturkürzel-Fenster beendet nicht ganzes Spiel
 
 ### [V1.6](Jezzball_V1.6.jar?raw=true):
 - Automatischer Update-Check eingeführt
