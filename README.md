@@ -23,7 +23,6 @@ Download der neusten Version:
 - Hinzufügen von "Kein Reset bei 0 Leben"
 - Pause-Funktion
 - Spracheinstellung
-- Bug von 1.6 beheben
 
 ### [V1.6.2](Jezzball_V1.6.2.jar?raw=true):
 - Bux fix: Tastaturkürzel-Fenster beendet nicht ganzes Spiel
