@@ -19,6 +19,7 @@ Download der neusten Version:
 
 ### Entwicklerupdates:
 Eventuell folgt in absehbarer Zeit eine Android-Version dieses Spieles. Das Grundgerüst dazu ist bereits programmiert, kleinere Anpassungen müssen aber noch verarbeitet werden.
+Die Android-Version kann [hier](Android_V1.0.apk?raw=true)heruntergeladen werden.
 
 ##Änderungen:
 ### V1.7 (noch nicht veröffentlicht):
