@@ -14,15 +14,18 @@ Seit dem 1.6 Update gibt es einen automatischen Update-Checker! Beim Start des S
 
 
 Download der neusten Version:  
-[Version 1.6.2](Jezzball_V1.6.2.jar?raw=true)  
+[Version 1.7_Beta](Jezzball_V1.7_Beta.jar?raw=true)  
 
 
 
 ##Änderungen:
 ### V1.7 (noch nicht veröffentlicht):
-- Hinzufügen von "Kein Reset bei 0 Leben"
+- Grafik-Bug "Kein Reset bei 0 Leben" beheben
+- Spracheinstellung
+
+### [V1.7_Beta](Jezzball_V1.7_Beta.jar?raw=true):
 - Pause-Funktion
-- Spracheinstellung (evtl. auch erst später)
+- Versuch von "Kein Reset bei 0 Leben" --> Grafik-Bug
 
 ### [V1.6.2](Jezzball_V1.6.2.jar?raw=true):
 - Bux fix: Tastaturkürzel-Fenster beendet nicht ganzes Spiel
