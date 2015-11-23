@@ -5,7 +5,7 @@ Der Download kann [hier](Android_V1.0.apk?raw=true) gefunden werden.
 
 ### Einstellungen:
 In den Android-Systemeinstellungen muss folgendes Häckchen gesetzt werden:
-- Enstellungen --> Optionen --> --> Sicherheit --> Unbekannte Quellen
+- Enstellungen --> Optionen --> Sicherheit --> Unbekannte Quellen
 
 Ohne dieses Häckchen ist es nicht möglich, das Spiel zu spielen.
 
