@@ -1,7 +1,7 @@
 # Anleitung zum Installieren der Android-Version von Jezzball 2.0
 
 ### Download:
-Der Download kann [hier](Android_V1.0.apk?raw=true) gefunden werden.
+Der Download kann [hier](Android-Versionen/Android_V1.0.apk?raw=true) gefunden werden.
 
 ### Einstellungen:
 In den Android-Systemeinstellungen muss folgendes Häckchen gesetzt werden:
