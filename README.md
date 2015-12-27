@@ -12,7 +12,7 @@ Ich weiss, dass es zur Zeit noch diverse Bugs im Spiel hat. Ich arbeite aber dar
 
 Seit dem 1.6 Update gibt es einen automatischen Update-Checker! Beim Start des Spiels wird automatisch überprüft, ob eine neue Version verfügbar ist. Diese kann dann auf dieser Seite heruntergeladen werden.
 
-
+Die Datei Jezzball_Vernissage.jar wird für die Vernissage gebraucht. Sie beinhaltet eine abgespeckte Version des Spieles. Ich empfehle, diese nicht zu spielen. Darum taucht sie auch nicht in den Updates auf.
 
 Download der neusten Version:  
 [Version 1.7_Beta](Computer-Versionen/Jezzball_V1.7_Beta.jar?raw=true)  
