@@ -23,7 +23,7 @@ Die Android-Version kann [hier](Android-Versionen/Android_V1.0.apk?raw=true) her
 Eine Anleitung zum Installieren der Android-Version kann [hier](Android.md) gefunden werden.
 
 ###Fehler entdeckt###
-Falls du einen Fehler entdeckt hast, melde ihn doch bitte [hier](/issues).
+Falls du einen Fehler entdeckt hast, melde ihn doch bitte [hier](http://github.com/maede97/Jezzball-2.0/issues).
 
 ##Änderungen:
 ### V1.7 (noch nicht veröffentlicht):
