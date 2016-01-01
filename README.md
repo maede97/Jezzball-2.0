@@ -17,10 +17,13 @@ Die Datei Jezzball_Vernissage.jar wird für die Vernissage gebraucht. Sie beinha
 Download der neusten Version:  
 [Version 1.7_Beta](Computer-Versionen/Jezzball_V1.7_Beta.jar?raw=true)  
 
-### Entwicklerupdates:
+###Entwicklerupdates:
 Eventuell folgt in absehbarer Zeit eine Android-Version dieses Spieles. Das Grundgerüst dazu ist bereits programmiert, kleinere Anpassungen müssen aber noch verarbeitet werden.
 Die Android-Version kann [hier](Android-Versionen/Android_V1.0.apk?raw=true) heruntergeladen werden.
 Eine Anleitung zum Installieren der Android-Version kann [hier](Android.md) gefunden werden.
+
+###Fehler entdeckt###
+Falls du einen Fehler entdeckt hast, melde ihn doch bitte [hier](/issues).
 
 ##Änderungen:
 ### V1.7 (noch nicht veröffentlicht):
