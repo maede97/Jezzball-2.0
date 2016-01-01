@@ -34,6 +34,9 @@ Falls du einen Fehler entdeckt hast, melde ihn doch bitte [hier](http://github.c
 - Pause-Funktion
 - Versuch von "Kein Reset bei 0 Leben" --> Grafik-Bug
 
+### [V1.6.3](Computer-Versionen/Jezzball_V1.6.3.jar?raw=true):
+- Neues Tastaturkürzel: M wechselt Ausrichtung der Mauer
+
 ### [V1.6.2](Computer-Versionen/Jezzball_V1.6.2.jar?raw=true):
 - Bux fix: Tastaturkürzel-Fenster beendet nicht ganzes Spiel
 
