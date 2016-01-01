@@ -14,7 +14,10 @@ Seit dem 1.6 Update gibt es einen automatischen Update-Checker! Beim Start des S
 
 Die Datei Jezzball_Vernissage.jar wird für die Vernissage gebraucht. Sie beinhaltet eine abgespeckte Version des Spieles. Ich empfehle, diese nicht zu spielen. Darum taucht sie auch nicht in den Updates auf.
 
-Download der neusten Version:  
+Download der neusten Version: 
+[Version 1.6.3](Computer-Versionen/Jezzball_V1.6.3.jar?raw=true)
+
+Beta-Version:
 [Version 1.7_Beta](Computer-Versionen/Jezzball_V1.7_Beta.jar?raw=true)  
 
 ###Entwicklerupdates:
