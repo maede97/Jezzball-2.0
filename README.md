@@ -37,7 +37,7 @@ Falls du einen Fehler entdeckt hast, melde ihn doch bitte [hier](http://github.c
 - Pause-Funktion
 - Versuch von "Kein Reset bei 0 Leben" --> Grafik-Bug
 
-### [V1.6.5](Computer-Versionen/Jezzball_V1.6.4.jar?raw=true):
+### [V1.6.5](Computer-Versionen/Jezzball_V1.6.5.jar?raw=true):
 - "Beenden bei Verlieren"-Bug: automatischer Neustart in V1.6.4 --> entfernt
 
 ### [V1.6.4](Computer-Versionen/Jezzball_V1.6.4.jar?raw=true):
